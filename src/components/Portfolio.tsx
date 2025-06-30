@@ -1,6 +1,6 @@
 
 import { Card, CardContent } from "@/components/ui/card";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, ArrowRight } from "lucide-react";
 
 const Portfolio = () => {
   const projects = [
@@ -9,11 +9,12 @@ const Portfolio = () => {
       category: "Web Application",
       description: "A full-featured e-commerce platform with payment integration, inventory management, and admin dashboard.",
       technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&h=300&fit=crop"
+      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&h=300&fit=crop",
+      featured: true
     },
     {
       title: "Healthcare Mobile App",
-      category: "Mobile Application",
+      category: "Mobile Application", 
       description: "Patient management system with appointment scheduling, medical records, and telemedicine features.",
       technologies: ["React Native", "Firebase", "WebRTC", "Redux"],
       image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=500&h=300&fit=crop"
@@ -49,44 +50,61 @@ const Portfolio = () => {
   ];
 
   return (
-    <section id="portfolio" className="py-20 bg-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-montserrat font-800 text-secondary mb-4">
+    <section id="portfolio" className="py-20 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full translate-x-1/2 -translate-y-1/2"></div>
+      <div className="absolute bottom-0 left-0 w-72 h-72 bg-accent/5 rounded-full -translate-x-1/2 translate-y-1/2"></div>
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="text-center mb-16 animate-fade-in">
+          <div className="inline-flex items-center px-4 py-2 bg-primary/10 rounded-full text-primary font-open-sans text-sm font-500 mb-6">
+            Our Work
+          </div>
+          <h2 className="text-4xl md:text-5xl font-montserrat font-800 text-secondary mb-6">
             Our <span className="text-primary">Portfolio</span>
           </h2>
-          <p className="text-lg font-open-sans text-slate-grey max-w-2xl mx-auto">
-            Explore our recent projects and see how we've helped businesses achieve their digital transformation goals.
+          <p className="text-xl font-open-sans text-slate-grey max-w-3xl mx-auto leading-relaxed">
+            Explore our recent projects and see how we've helped businesses achieve their digital transformation goals through innovative software solutions.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {projects.map((project, index) => (
-            <Card key={index} className="group overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 bg-white">
+            <Card key={index} 
+                  className={`group overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 bg-white hover:scale-105 animate-fade-in ${project.featured ? 'md:col-span-2 lg:col-span-1' : ''}`}
+                  style={{animationDelay: `${index * 0.1}s`}}>
               <div className="relative overflow-hidden">
                 <img 
                   src={project.image} 
                   alt={project.title}
-                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                  className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-4 left-4 right-4 flex justify-between">
-                    <button className="bg-white/20 backdrop-blur-sm text-white p-2 rounded-lg hover:bg-white/30 transition-colors">
-                      <ExternalLink className="h-5 w-5" />
-                    </button>
-                    <button className="bg-white/20 backdrop-blur-sm text-white p-2 rounded-lg hover:bg-white/30 transition-colors">
-                      <Github className="h-5 w-5" />
-                    </button>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
+                    <div className="text-white">
+                      <div className="text-sm font-open-sans opacity-90 mb-1">{project.category}</div>
+                      <div className="text-lg font-montserrat font-700">{project.title}</div>
+                    </div>
+                    <div className="flex gap-2">
+                      <button className="bg-white/20 backdrop-blur-sm text-white p-2 rounded-lg hover:bg-white/30 transition-colors hover:scale-110">
+                        <ExternalLink className="h-4 w-4" />
+                      </button>
+                      <button className="bg-white/20 backdrop-blur-sm text-white p-2 rounded-lg hover:bg-white/30 transition-colors hover:scale-110">
+                        <Github className="h-4 w-4" />
+                      </button>
+                    </div>
                   </div>
+                </div>
+                <div className="absolute top-4 left-4">
+                  <span className="px-3 py-1 bg-primary text-white text-xs font-open-sans rounded-full">
+                    {project.category}
+                  </span>
                 </div>
               </div>
               
               <CardContent className="p-6 space-y-4">
                 <div>
-                  <div className="text-sm font-open-sans text-primary font-500 mb-1">
-                    {project.category}
-                  </div>
-                  <h3 className="text-xl font-montserrat font-700 text-secondary mb-2">
+                  <h3 className="text-xl font-montserrat font-700 text-secondary mb-3 group-hover:text-primary transition-colors">
                     {project.title}
                   </h3>
                   <p className="font-open-sans text-slate-grey text-sm leading-relaxed">
@@ -98,43 +116,63 @@ const Portfolio = () => {
                   {project.technologies.map((tech, techIndex) => (
                     <span 
                       key={techIndex}
-                      className="px-3 py-1 bg-gray-100 text-slate-grey text-xs font-open-sans rounded-full"
+                      className="px-3 py-1 bg-gray-100 hover:bg-primary/10 text-slate-grey hover:text-primary text-xs font-open-sans rounded-full transition-colors cursor-default"
                     >
                       {tech}
                     </span>
                   ))}
+                </div>
+                
+                <div className="flex items-center text-primary font-open-sans font-500 text-sm group-hover:text-accent transition-colors cursor-pointer">
+                  <span>View Project</span>
+                  <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
                 </div>
               </CardContent>
             </Card>
           ))}
         </div>
 
-        {/* Stats Section */}
-        <div className="mt-20 bg-gradient-to-r from-secondary to-primary p-12 rounded-3xl text-white">
-          <div className="text-center mb-8">
-            <h3 className="text-2xl font-montserrat font-700 mb-4">
+        {/* Enhanced Stats Section */}
+        <div className="bg-gradient-to-r from-secondary via-primary to-accent p-12 rounded-3xl text-white shadow-2xl animate-fade-in" style={{animationDelay: '0.6s'}}>
+          <div className="text-center mb-12">
+            <h3 className="text-3xl md:text-4xl font-montserrat font-800 mb-6">
               Delivering Excellence Through
               <br />
               <span className="text-accent">Expertise and Dedication</span>
             </h3>
+            <p className="text-lg font-open-sans opacity-90 max-w-2xl mx-auto">
+              Our commitment to quality and innovation drives exceptional results for every project we undertake.
+            </p>
           </div>
           
           <div className="grid md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-montserrat font-800 text-accent mb-2">90%</div>
-              <div className="font-open-sans text-sm opacity-90">Success Rate</div>
+            <div className="group hover:scale-110 transition-transform duration-300">
+              <div className="text-5xl font-montserrat font-800 text-accent mb-3 group-hover:text-white transition-colors">90%</div>
+              <div className="font-open-sans opacity-90">Success Rate</div>
+              <div className="w-full bg-white/20 rounded-full h-2 mt-2">
+                <div className="bg-accent h-2 rounded-full w-[90%] animate-[width_2s_ease-in-out]"></div>
+              </div>
             </div>
-            <div>
-              <div className="text-4xl font-montserrat font-800 text-accent mb-2">70%</div>
-              <div className="font-open-sans text-sm opacity-90">Repeat Clients</div>
+            <div className="group hover:scale-110 transition-transform duration-300">
+              <div className="text-5xl font-montserrat font-800 text-accent mb-3 group-hover:text-white transition-colors">70%</div>
+              <div className="font-open-sans opacity-90">Repeat Clients</div>
+              <div className="w-full bg-white/20 rounded-full h-2 mt-2">
+                <div className="bg-accent h-2 rounded-full w-[70%] animate-[width_2s_ease-in-out_0.5s]"></div>
+              </div>
             </div>
-            <div>
-              <div className="text-4xl font-montserrat font-800 text-accent mb-2">48h</div>
-              <div className="font-open-sans text-sm opacity-90">Response Time</div>
+            <div className="group hover:scale-110 transition-transform duration-300">
+              <div className="text-5xl font-montserrat font-800 text-accent mb-3 group-hover:text-white transition-colors">48h</div>
+              <div className="font-open-sans opacity-90">Response Time</div>
+              <div className="w-full bg-white/20 rounded-full h-2 mt-2">
+                <div className="bg-accent h-2 rounded-full w-full animate-[width_2s_ease-in-out_1s]"></div>
+              </div>
             </div>
-            <div>
-              <div className="text-4xl font-montserrat font-800 text-accent mb-2">99%</div>
-              <div className="font-open-sans text-sm opacity-90">Uptime</div>
+            <div className="group hover:scale-110 transition-transform duration-300">
+              <div className="text-5xl font-montserrat font-800 text-accent mb-3 group-hover:text-white transition-colors">99%</div>
+              <div className="font-open-sans opacity-90">Uptime</div>
+              <div className="w-full bg-white/20 rounded-full h-2 mt-2">
+                <div className="bg-accent h-2 rounded-full w-[99%] animate-[width_2s_ease-in-out_1.5s]"></div>
+              </div>
             </div>
           </div>
         </div>
