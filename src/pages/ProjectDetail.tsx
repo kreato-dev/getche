@@ -58,30 +58,6 @@ const ProjectDetail = () => {
 
   const project = projects.find(p => p.id === id) || projects[0];
 
-  const blogPosts = [
-    {
-      title: "Building Scalable E-Commerce: Lessons Learned",
-      excerpt: "Key insights from developing a high-performance e-commerce platform that handles thousands of users.",
-      date: "2024-01-15",
-      author: "Development Team",
-      readTime: "5 min read"
-    },
-    {
-      title: "Microservices Architecture in Modern Web Apps",
-      excerpt: "How we implemented microservices to achieve better scalability and maintainability.",
-      date: "2024-01-10", 
-      author: "Tech Lead",
-      readTime: "8 min read"
-    },
-    {
-      title: "Security Best Practices for Financial Applications",
-      excerpt: "Essential security measures when building applications that handle sensitive financial data.",
-      date: "2024-01-05",
-      author: "Security Team", 
-      readTime: "6 min read"
-    }
-  ];
-
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
@@ -197,51 +173,6 @@ const ProjectDetail = () => {
                 </span>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Blog Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 animate-fade-in-up">
-            <h2 className="text-3xl sm:text-4xl font-montserrat font-800 text-secondary mb-6">
-              Related Blog Posts
-            </h2>
-            <p className="text-lg text-slate-grey font-open-sans max-w-2xl mx-auto">
-              Insights and learnings from this project
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post, index) => (
-              <Card key={index} className="group hover:shadow-xl transition-all duration-300 bg-white hover:scale-105 animate-fade-in-up" style={{animationDelay: `${index * 0.1}s`}}>
-                <CardContent className="p-6">
-                  <div className="flex items-center text-sm text-slate-grey font-open-sans mb-4">
-                    <Calendar className="h-4 w-4 mr-2" />
-                    {post.date}
-                    <span className="mx-2">•</span>
-                    <User className="h-4 w-4 mr-2" />
-                    {post.author}
-                  </div>
-                  
-                  <h3 className="text-xl font-montserrat font-700 text-secondary mb-3 group-hover:text-primary transition-colors">
-                    {post.title}
-                  </h3>
-                  
-                  <p className="text-slate-grey font-open-sans leading-relaxed mb-4">
-                    {post.excerpt}
-                  </p>
-                  
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-primary font-open-sans font-500">{post.readTime}</span>
-                    <Button variant="ghost" size="sm" className="text-primary hover:text-primary/80">
-                      Read More →
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
           </div>
         </div>
       </section>
