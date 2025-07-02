@@ -57,6 +57,12 @@ const Header = () => {
             >
               Contact
             </button>
+            <a 
+              href="/blog"
+              className="font-open-sans text-slate-grey hover:text-primary transition-all duration-300 hover:scale-105 relative after:absolute after:w-0 after:h-0.5 after:bg-primary after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full"
+            >
+              Blog
+            </a>
           </nav>
 
           {/* CTA Button */}
@@ -116,6 +122,12 @@ const Header = () => {
               >
                 Contact
               </button>
+              <a 
+                href="/blog"
+                className="block w-full text-left px-3 py-2 text-slate-grey hover:text-primary font-open-sans transition-colors hover:bg-primary/5 rounded-lg"
+              >
+                Blog
+              </a>
               <div className="px-3 py-2">
                 <Button 
                   onClick={() => scrollToSection('contact')}
