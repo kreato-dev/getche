@@ -1,10 +1,12 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { ExternalLink, Github, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Portfolio = () => {
   const projects = [
     {
+      id: "1",
       title: "E-Commerce Platform",
       category: "Web Application",
       description: "A full-featured e-commerce platform with payment integration, inventory management, and admin dashboard.",
@@ -13,6 +15,7 @@ const Portfolio = () => {
       featured: true
     },
     {
+      id: "2",
       title: "Healthcare Mobile App",
       category: "Mobile Application", 
       description: "Patient management system with appointment scheduling, medical records, and telemedicine features.",
@@ -20,6 +23,7 @@ const Portfolio = () => {
       image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=500&h=300&fit=crop"
     },
     {
+      id: "3",
       title: "Financial Dashboard",
       category: "Web Application",
       description: "Real-time financial analytics dashboard with data visualization and reporting capabilities.",
@@ -27,6 +31,7 @@ const Portfolio = () => {
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop"
     },
     {
+      id: "4",
       title: "Logistics Management System",
       category: "Enterprise Software",
       description: "Complete logistics solution with route optimization, tracking, and fleet management features.",
@@ -34,6 +39,7 @@ const Portfolio = () => {
       image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=500&h=300&fit=crop"
     },
     {
+      id: "5",
       title: "Social Media Analytics",
       category: "SaaS Platform",
       description: "Social media management and analytics platform with multi-platform integration and AI insights.",
@@ -41,6 +47,7 @@ const Portfolio = () => {
       image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=500&h=300&fit=crop"
     },
     {
+      id: "6",
       title: "IoT Monitoring System",
       category: "IoT Solution",
       description: "Real-time IoT device monitoring with alerts, data visualization, and predictive maintenance.",
@@ -124,10 +131,14 @@ const Portfolio = () => {
                   ))}
                 </div>
                 
-                <div className="flex items-center text-primary font-open-sans font-500 text-xs sm:text-sm group-hover:text-accent transition-colors cursor-pointer animate-slide-in-right" style={{animationDelay: `${0.8 + index * 0.1}s`}}>
+                <Link 
+                  to={`/project/${project.id}`}
+                  className="flex items-center text-primary font-open-sans font-500 text-xs sm:text-sm group-hover:text-accent transition-colors cursor-pointer animate-slide-in-right" 
+                  style={{animationDelay: `${0.8 + index * 0.1}s`}}
+                >
                   <span>View Project</span>
                   <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                </div>
+                </Link>
               </CardContent>
             </Card>
           ))}
